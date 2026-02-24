@@ -40,7 +40,7 @@ function getRomanNumeral(num) {
 }
 
 // Main execution flow
-readline.question('Enter a positive integer: ', (input) => {
+readline.question('Enter a positive  integer: ', (input) => {
   const decimalNumber = parseInt(input);
 
   // Validation to handle invalid inputs, negative numbers, and potential overflows
