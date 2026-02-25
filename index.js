@@ -30,21 +30,29 @@ function getRomanNumeral(num) {
 readline.question('Enter a positive integer: ', (input) => {
   const trimmedInput = input.trim();
 
-  if (trimmedInput.length > 5) {
-    console.error("Error: Número inválido. Demasiadas cifras.");
+  // Revisar si es número entero válido
+  if (!/^\d+$/.test(trimmedInput)) {
+    console.error("Error: Debes ingresar un número entero positivo válido.");
     readline.close();
     return;
   }
 
   const decimalNumber = parseInt(trimmedInput);
 
-  if (isNaN(decimalNumber) || decimalNumber < 1) {
-    console.error("Error: Please enter a valid positive integer.");
+  // Validaciones específicas
+  if (decimalNumber < 1) {
+    console.error("Error: Número inválido. Debe ser positivo.");
+  } else if (decimalNumber > 3999999) {
+    console.error("Error: Número demasiado grande para conversión romana (Max: 3,999,999).");
   } else {
+    const binaryValue = decimalNumber.toString(2);
+    const hexValue = decimalNumber.toString(16).toUpperCase();
+    const romanValue = getRomanNumeral(decimalNumber);
+
     console.log(`\n--- Results for [${decimalNumber}] ---`);
-    console.log(` > Binary: ${decimalNumber.toString(2)}`);
-    console.log(` > Hexadecimal: ${decimalNumber.toString(16).toUpperCase()}`);
-    console.log(` > Roman: ${getRomanNumeral(decimalNumber)}`);
+    console.log(` > Binary: ${binaryValue}`);
+    console.log(` > Hexadecimal: ${hexValue}`);
+    console.log(` > Roman: ${romanValue}`);
   }
 
   readline.close();
